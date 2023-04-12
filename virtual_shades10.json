@@ -1,0 +1,27 @@
+{
+  "manufacturer": "WirenBoard virtual shades customized",
+  "model": "Virtual rollshades gen 2",
+  "services": [
+    {
+      "type": "WindowCovering",
+      "characteristics": [
+        {
+          "type": "TargetPosition",
+          "link": {
+            "type": "Integer",
+            "topicSearch": "/devices/(rollshade_[0-9])/controls/target_position/meta/type",
+            "topicGet": "/devices/(1)/controls/position",
+            "topicSet": "/devices/(1)/controls/target_position/on"
+          }
+        },
+        {
+          "type": "CurrentPosition",
+          "link": {
+            "type": "Integer",
+            "topicGet": "/devices/(1)/controls/position"
+          }
+        }
+      ]
+    }
+  ]
+}
