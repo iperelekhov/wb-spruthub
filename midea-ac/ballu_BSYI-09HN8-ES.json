@@ -10,7 +10,7 @@
                     "type": "Active",
                     "link": {
                         "type": "String",
-                        "topicSearch": "esphome/(midea-.*)/climate/midea_climate/mode/state",
+                        "topicSearch": "esphome/(midea-(.*))/climate/midea_climate/mode/state",
                         "topicGet": "esphome/(1)/switch/midea_ac_power_control/state",
                         "topicSet": "esphome/(1)/switch/midea_ac_power_control/command",
                         "map": {
@@ -102,6 +102,107 @@
                             "1": "both",
                             "-1": "vertical",
                             "-2": "horizontal"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "Thermostat",
+            "characteristics": [
+                {
+                    "type": "TargetHeatingCoolingState",
+                    "link": {
+                        "type": "String",
+                        "topicSearch": "esphome/(midea-(.*))/climate/midea_climate/mode/state",
+                        "topicGet": "esphome/(1)/climate/midea_climate/mode/state",
+                        "topicSet": "esphome/(1)/climate/midea_climate/mode/command",
+                        "map": {
+                            "0": "off",
+                            "1": "heat",
+                            "2": "cool",
+                            "3": "heat_cool",
+                            "-1": "fan_only",
+                            "-2": "dry"
+                        },
+                        "validValues": "off,heat,cool,heat_cool,fan_only,dry"
+                    }
+                },
+                {
+                    "type": "CurrentTemperature",
+                    "link": {
+                        "type": "Integer",
+                        "topicGet": "esphome/(1)/climate/midea_climate/current_temperature/state"
+                    }
+                },
+                {
+                    "type": "TargetTemperature",
+                    "link": {
+                        "type": "Integer",
+                        "topicGet": "esphome/(1)/climate/midea_climate/target_temperature/state",
+                        "topicSet": "esphome/(1)/climate/midea_climate/target_temperature/command"
+                    },
+                    "minValue": 16,
+                    "maxValue": 30,
+                    "minStep": 1
+                },
+                {
+                    "type": "C_FanSpeed",
+                    "link": {
+                        "type": "String",
+                        "topicGet": "esphome/(1)/climate/midea_climate/fan_mode/state",
+                        "topicSet": "esphome/(1)/climate/midea_climate/fan_mode/command",
+                        "map": {
+                            "0": "auto",
+                            "1": "silent",
+                            "2": "low",
+                            "3": "medium",
+                            "4": "high",
+                            "5": "turbo"
+                        }
+                    }
+                },
+                {
+                    "type": "SwingMode",
+                    "link": {
+                        "type": "String",
+                        "topicGet": "esphome/(1)/climate/midea_climate/swing_mode/state",
+                        "topicSet": "esphome/(1)/climate/midea_climate/swing_mode/command",
+                        "map": {
+                            "0": "off",
+                            "1": "both",
+                            "-1": "vertical",
+                            "-2": "horizontal"
+                        }
+                    }
+                },
+                {
+                    "type": "CurrentHeatingCoolingState",
+                    "link": {
+                        "type": "String",
+                        "topicGet": "esphome/(1)/climate/midea_climate/mode/state",
+                        "map": {
+                            "0": "heat_cool",
+                            "1": "heat",
+                            "2": "cool"
+                        }
+                    },
+                    "validValues": "off,heat,cool"
+                }
+            ]
+        },
+        {
+            "type": "Switch",
+            "characteristics": [
+                {
+                    "type": "On",
+                    "link": {
+                        "type": "String",
+                        "topicGet": "esphome/(1)/switch/midea_ac_beeper_control/state",
+                        "topicSet": "esphome/(1)/switch/midea_ac_beeper_control/command",
+                        "map": {
+                            "false": "OFF",
+                            "true": "ON"
                         }
                     }
                 }
