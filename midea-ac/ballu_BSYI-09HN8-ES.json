@@ -10,7 +10,7 @@
                     "type": "Active",
                     "link": {
                         "type": "String",
-                        "topicSearch": "esphome/(midea-(.*))/climate/midea_climate/mode/state",
+                        "topicSearch": "esphome/(midea-.*)/climate/midea_climate/mode/state",
                         "topicGet": "esphome/(1)/switch/midea_ac_power_control/state",
                         "topicSet": "esphome/(1)/switch/midea_ac_power_control/command",
                         "map": {
