@@ -1,0 +1,106 @@
+esphome:
+  name: midea-air
+  
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+  baud_rate: 0
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "CHANGE ME"
+
+ota:
+  password: "CHANGE ME"
+
+wifi:
+  ssid: YOUR_SSID
+  password: YOUR_PASSWORD
+  manual_ip:
+    # Set this to the IP of the ESP
+    static_ip: YOUR_STATIC_IP
+    # Set this to the IP address of the router. Often ends with .1
+    gateway: 192.168.1.1
+    # The subnet of the network. 255.255.255.0 works for most home networks.
+    subnet: 255.255.255.0
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Midea-Air Fallback Hotspot"
+    password: "FALLBACK_PASSWORD"
+
+captive_portal:
+uart:
+  tx_pin: 1         # hardware dependant
+  rx_pin: 3         # hardware dependant
+  baud_rate: 9600
+
+# Main settings
+climate:
+  - platform: midea
+    id: midea_air
+    name: Midea Climate         # Use a unique name.
+    period: 1s                  # Optional
+    timeout: 2s                 # Optional
+    num_attempts: 3             # Optional
+    autoconf: true              # Autoconfigure most options.
+    beeper: true                # Beep on commands.
+    visual:                     # Optional. Example of visual settings override.
+      min_temperature: 17 °C    # min: 17
+      max_temperature: 30 °C    # max: 30
+      temperature_step: 0.5 °C  # min: 0.5
+    supported_modes:            # Optional. All capabilities in this section may be detected by autoconf.
+      - FAN_ONLY
+      - HEAT_COOL
+      - COOL
+      - HEAT
+      - DRY
+    custom_fan_modes:           # Optional
+      - SILENT
+      - TURBO
+    supported_presets:          # Optional. All capabilities in this section may be detected by autoconf.
+      - ECO
+      - BOOST
+      - SLEEP
+    custom_presets:             # Optional. All capabilities in this section may be detected by autoconf.
+      - FREEZE_PROTECTION
+    supported_swing_modes:      # Optional
+      - VERTICAL
+      - HORIZONTAL
+      - BOTH
+    outdoor_temperature:        # Optional. Outdoor temperature sensor (may display incorrect values after long inactivity).
+      name: Temp
+    power_usage:                # Optional. Power usage sensor (only for devices that support this feature).
+      name: Power
+    humidity_setpoint:          # Optional. Indoor humidity sensor (only for devices that support this feature).
+      name: Humidity
+mqtt:
+  broker: YOUR_BROKER_IP
+  port: 1883
+  username: ''
+  password: ''
+  discovery: false
+  id: mqtt_client
+  topic_prefix: "esphome/midea-air" 
+  log_topic: null
+switch:
+  - platform: template
+    name: MIDEA_AC_BEEPER_CONTROL
+    optimistic: true
+    turn_on_action:
+      midea_ac.beeper_on:
+    turn_off_action:
+      midea_ac.beeper_off:
+  - platform: template
+    name: MIDEA_AC_POWER_CONTROL
+    optimistic: true
+    lambda: 'return id(midea-air).mode != esphome::climate::ClimateMode::CLIMATE_MODE_OFF;'
+    turn_on_action:
+      midea_ac.power_on:
+    turn_off_action:
+      midea_ac.power_off:      
