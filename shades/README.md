@@ -2,6 +2,10 @@
 
 This set of scripts allows you to integrate phase controlled roll shades motor (such as Dooya DM35s) controlled by WBIO-DO-R10R-4 from Wirenboard into Spruthub.
 
+## Dooya Modbus
+
+dooya.json file with custom template for spruthub allows **Dooya DT82** shades with Modbus controller to be integrated into SprutHub. Wirenboard supports it by default, but SprutHub require a customer template for it. If your have modbus version of Dooya motors just skip the Wirenboard section and upload custom template into SprutHub as required.
+
 ## Wirenboard
 
 * Place the file `shades.js` into wb-rules directory
