@@ -1,0 +1,112 @@
+{
+  "manufacturer": "Dooya",
+  "model": "DT82TV",
+  "modelId": "/devices/(dooya_[x0-9]{6})/controls/(Position)/meta/type",
+  "catalogId": 566,
+  "services": [
+    {
+      "type": "WindowCovering",
+      "characteristics": [
+        {
+          "type": "TargetPosition",
+          "link": [
+            {
+              "type": "Integer",
+              "topicGet": "/devices/(1)/controls/(2)",
+              "topicSet": "/devices/(1)/controls/(2)/on"
+            }
+          ]
+        },
+        {
+          "type": "CurrentPosition",
+          "link": [
+            {
+              "type": "Integer",
+              "topicGet": "/devices/(1)/controls/(2)"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "options": [
+    {
+      "link": [
+        {
+          "type": "Boolean",
+          "topicGet": "/devices/(1)/controls/Direction",
+          "topicSet": "/devices/(1)/controls/Direction/on"
+        }
+      ],
+      "type": "Boolean",
+      "name": "Инверсия",
+      "init": true,
+      "value": false
+    },
+    {
+      "link": [
+        {
+          "type": "Boolean",
+          "topicGet": "/devices/(1)/controls/Hand pulling",
+          "topicSet": "/devices/(1)/controls/Hand pulling/on"
+        }
+      ],
+      "type": "Boolean",
+      "name": "Управление рукой",
+      "init": true,
+      "value": false
+    },
+    {
+      "link": [
+        {
+          "type": "Integer",
+          "topicGet": "/devices/(1)/controls/Open",
+          "topicSet": "/devices/(1)/controls/Open/on"
+        }
+      ],
+      "type": "Boolean",
+      "name": "Открыть",
+      "value": "",
+      "inputType": "BUTTON"
+    },
+    {
+      "link": [
+        {
+          "type": "Integer",
+          "topicGet": "/devices/(1)/controls/Close",
+          "topicSet": "/devices/(1)/controls/Close/on"
+        }
+      ],
+      "type": "Boolean",
+      "name": "Закрыть",
+      "value": "",
+      "inputType": "BUTTON"
+    },
+    {
+      "link": [
+        {
+          "type": "Integer",
+          "topicGet": "/devices/(1)/controls/Stop",
+          "topicSet": "/devices/(1)/controls/Stop/on"
+        }
+      ],
+      "type": "Boolean",
+      "name": "Остановить",
+      "value": "",
+      "inputType": "BUTTON"
+    },
+    {
+      "link": [
+        {
+          "type": "Integer",
+          "topicGet": "/devices/(1)/controls/Factory Default",
+          "topicSet": "/devices/(1)/controls/Factory Default/on"
+        }
+      ],
+      "type": "Boolean",
+      "name": "Сбросить настройки",
+      "value": "",
+      "inputType": "BUTTON"
+    }
+  ]
+}
